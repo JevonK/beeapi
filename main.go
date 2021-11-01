@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
+	// 设置日志
 	log := logs.NewLogger(10000)
-	log.SetLogger("file", `{"filename":"logs/test.log"}`)
-	//val, _ := beego.AppConfig.String("appname")
-	log.Info("load config name is")
+	log.EnableFuncCallDepth(true)
+	// 开启swagger api 文档
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
