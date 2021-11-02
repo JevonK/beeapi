@@ -3,13 +3,11 @@ package controllers
 import (
 	"beeapi/models"
 	"encoding/json"
-
-	beego "github.com/beego/beego/v2/server/web"
 )
 
 // Operations about object
 type ObjectController struct {
-	beego.Controller
+	BaseController
 }
 
 // @Title Create
@@ -22,8 +20,14 @@ func (o *ObjectController) Post() {
 	var ob models.Object
 	json.Unmarshal(o.Ctx.Input.RequestBody, &ob)
 	objectid := models.AddOne(ob)
-	o.Data["json"] = map[string]string{"ObjectId": objectid}
-	o.ServeJSON()
+	data := make(map[string]interface{})
+	data["ObjectId"] = objectid
+
+	// 返回参数
+	o.return_json(200, "success", data)
+
+	//o.Data["json"] = map[string]string{"ObjectId": objectid}
+	//o.ServeJSON()
 }
 
 // @Title Get

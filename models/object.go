@@ -25,7 +25,7 @@ func init() {
 func AddOne(object Object) (ObjectId string) {
 	object.ObjectId = "astaxie" + strconv.FormatInt(time.Now().UnixNano(), 10)
 	Objects[object.ObjectId] = &object
-	return object.ObjectId
+	return "astaxie"
 }
 
 func GetOne(ObjectId string) (object *Object, err error) {
