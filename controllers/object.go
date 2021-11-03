@@ -22,6 +22,8 @@ func (o *ObjectController) Post() {
 	objectid := models.AddOne(ob)
 	data := make(map[string]interface{})
 	data["ObjectId"] = objectid
+	log := o.file_save_set("object.log")
+	log.Info("asdlajhdfas ")
 
 	// 返回参数
 	o.return_json(200, "success", data)

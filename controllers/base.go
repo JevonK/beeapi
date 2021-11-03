@@ -40,14 +40,13 @@ func (b *BaseController) return_json(code int, msg string, data interface{}) {
 	b.ServeJSON()
 }
 
-func file_save_set (path string) *logs.BeeLogger {
+func (b *BaseController) file_save_set (path string) *logs.BeeLogger {
 	// 设置日志
 	log := logs.NewLogger(10000)
 	log.EnableFuncCallDepth(true)
-	year := time.Now().Year()
-	month := time.Now().Month()
-	day := time.Now().Day()
-	path = "logs/" + string(year) + string(month) + string(day) + "/" + path
+	dateStr := time.Now().Format("2006-01-02")
+	path = "logs/" + dateStr + "/" + path
+
 	log.SetLogger(logs.AdapterFile, `{"color":true, "fileName": "` + path + `"}`)
 	return log
 }

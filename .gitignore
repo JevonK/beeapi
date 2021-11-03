@@ -1,2 +1,3 @@
-./beeapi
-./.idea
+beeapi
+.idea
+logs
