@@ -40,7 +40,7 @@ func (b *BaseController) return_json(code int, msg string, data interface{}) {
 	b.ServeJSON()
 }
 
-func file_save_set (path string) {
+func file_save_set (path string) *logs.BeeLogger {
 	// 设置日志
 	log := logs.NewLogger(10000)
 	log.EnableFuncCallDepth(true)
