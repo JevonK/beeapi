@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 	"time"
@@ -9,12 +10,6 @@ import (
 // Operations about object
 type BaseController struct {
 	beego.Controller
-}
-
-type returnData struct {
-	Code int `json:"code"`
-	Msg string `json:"msg"`
-	Data map[interface{}]interface{} `json:"data"`
 }
 
 var (
@@ -30,12 +25,16 @@ func (this *BaseController) init() {
 }
 
 func (b *BaseController) return_json(code int, msg string, data interface{}) {
-	logs.SetLogger(logs.AdapterFile, `{"color":true, "fileName": "logs/response.log"}`)
+	timeObj := time.Now()
+	year := fmt.Sprintf("%d", timeObj.Year())
+	month := fmt.Sprintf("%d", timeObj.Month())
+	day := fmt.Sprintf("%d", timeObj.Day())
+	logs.SetLogger(logs.AdapterFile, `{"color":true, "fileName": "logs/`+year+month+day+`response.log"}`)
 	if msg != "" {
 		msg = codeMsg[code]
 	}
 	logs.Info("code: %d; msg: %s; data: %v ", code, msg, data)
-	res := map[string] interface{}{"code": code, "msg": codeMsg[code], "data": data}
+	res := map[string]interface{}{"code": code, "msg": codeMsg[code], "data": data}
 	b.Data["json"] = res
 	b.ServeJSON()
 }

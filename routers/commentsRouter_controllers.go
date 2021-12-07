@@ -7,6 +7,33 @@ import (
 
 func init() {
 
+    beego.GlobalControllerRouter["beeapi/controllers:CardHolderController"] = append(beego.GlobalControllerRouter["beeapi/controllers:CardHolderController"],
+        beego.ControllerComments{
+            Method: "Get",
+            Router: "/",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["beeapi/controllers:CardHolderController"] = append(beego.GlobalControllerRouter["beeapi/controllers:CardHolderController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: "/",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["beeapi/controllers:CardHolderController"] = append(beego.GlobalControllerRouter["beeapi/controllers:CardHolderController"],
+        beego.ControllerComments{
+            Method: "Asd",
+            Router: "/asd",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["beeapi/controllers:ObjectController"] = append(beego.GlobalControllerRouter["beeapi/controllers:ObjectController"],
         beego.ControllerComments{
             Method: "Post",

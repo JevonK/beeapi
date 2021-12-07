@@ -9,8 +9,6 @@ package routers
 
 import (
 	"beeapi/controllers"
-	context2 "github.com/beego/beego/adapter/context"
-
 	beego "github.com/beego/beego/v2/server/web"
 )
 
@@ -27,12 +25,9 @@ func init() {
 			),
 		),
 		beego.NSNamespace("/card_holder",
-			beego.NSGet("/:id", func(ctx *context2.Context) {
-				ctx.Output.Body([]byte("shopinfo"))
-			}),
-			//beego.NSInclude(
-			//	&controllers.CardHolderController{},
-			//),
+			beego.NSInclude(
+				&controllers.CardHolderController{},
+			),
 		),
 	)
 	beego.AddNamespace(ns)

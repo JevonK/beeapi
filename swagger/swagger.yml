@@ -11,6 +11,57 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
+  /card_holder/:
+    get:
+      tags:
+      - card_holder
+      description: get all the staticblock by key
+      operationId: CardHolderController.Get
+      parameters:
+      - in: body
+        name: body
+        description: body for CardHolder content
+        required: true
+        schema:
+          $ref: '#/definitions/models.CardHolder'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ZDTCustomer.Customer'
+        "400":
+          description: Invalid email supplied
+        "404":
+          description: User not found
+    post:
+      tags:
+      - card_holder
+      description: get all the staticblock by key
+      operationId: CardHolderController.Post
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ZDTCustomer.Customer'
+        "400":
+          description: Invalid email supplied
+        "404":
+          description: User not found
+  /card_holder/asd:
+    get:
+      tags:
+      - card_holder
+      description: get all the staticblock by key
+      operationId: CardHolderController.get
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ZDTCustomer.Customer'
+        "400":
+          description: Invalid email supplied
+        "404":
+          description: User not found
   /object/:
     get:
       tags:
@@ -219,6 +270,40 @@ paths:
         "200":
           description: '{string} logout success'
 definitions:
+  models.CardHolder:
+    title: CardHolder
+    type: object
+    properties:
+      card_number:
+        type: string
+      created_at:
+        type: integer
+        format: int64
+      id:
+        type: integer
+        format: int64
+      is_issue:
+        type: integer
+        format: int64
+      is_used:
+        type: integer
+        format: int64
+      is_valid:
+        type: integer
+        format: int64
+      issue_time:
+        type: integer
+        format: int64
+      order_id:
+        type: string
+      sku_no:
+        type: string
+      supplier_id:
+        type: integer
+        format: int64
+      use_time:
+        type: integer
+        format: int64
   models.Object:
     title: Object
     type: object
@@ -255,6 +340,9 @@ definitions:
         $ref: '#/definitions/models.Profile'
       Username:
         type: string
+  models.ZDTCustomer.Customer:
+    title: Customer
+    type: object
 tags:
 - name: object
   description: |
@@ -262,3 +350,6 @@ tags:
 - name: user
   description: |
     Operations about Users
+- name: card_holder
+  description: |
+    Operations about CardHolders

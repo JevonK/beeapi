@@ -3,7 +3,7 @@ package main
 import (
 	_ "beeapi/routers"
 	"github.com/astaxie/beego/orm"
-	//_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 	beego "github.com/beego/beego/v2/server/web"
 )
 

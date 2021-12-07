@@ -30,17 +30,13 @@ func add()  {
 
 }
 
-func GetCardHolder() (holder *CardHolder) {
+func GetCardHolder() (holders interface{}) {
 	var o = orm.NewOrm()
+	var card_holder_list []*CardHolder
+	_, err := o.QueryTable("CardHolder").All(&card_holder_list)
 
-	cardHolder := CardHolder{Id: 1}
-	err := o.Read(&cardHolder)
-	if err == orm.ErrNoRows {
+	if err != nil {
 		fmt.Println("查询不到")
-	} else if err == orm.ErrMissPK {
-		fmt.Println("找不到主键 ")
-	} else {
-		fmt.Println(cardHolder.Id, cardHolder.SkuNo)
 	}
-	return holder
+	return card_holder_list
 }
